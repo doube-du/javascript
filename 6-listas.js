@@ -10,7 +10,7 @@ listaCidades.push('Teresina');
 console.log(listaCidades);
 
 //Splice remove, aparte de X elemento, Y elementos, sendo ".splice(X, Y)"
-listaCidades.splice(1, 1);
+listaCidades.splice(3, 1);
 
 console.log(listaCidades);
 
