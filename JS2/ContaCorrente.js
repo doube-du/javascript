@@ -1,15 +1,41 @@
+import {Cliente} from './Cliente.js'
+
 export class ContaCorrente{
+    //Atributo estático da classe não considera as instâncias
+    static numeroContas = 0;
+
     agencia;
-    saldo;
-    cliente;
+    _saldo;
+    _cliente;
+
+    set cliente(cliente){
+        if(cliente instanceof Cliente){
+            this._cliente = cliente;
+        }
+    }
+
+    get saldo(){
+        return this._saldo;
+    }
+
+    get cliente(){
+        return this._cliente;
+    }
+
+    constructor(agencia, saldo, cliente){
+        this.agencia    =  agencia
+        this._saldo     =    saldo
+        this._cliente   =  cliente
+        ContaCorrente.numeroContas += 1 ;
+    }
     
     sacar(valorSacado){
-        if(this.saldo <= valorSacado){
+        if(this._saldo <= valorSacado){
             console.log(`Você não possui saldo o suficiente`);
             return; //Early return
         }
 
-        this.saldo = this.saldo - valorSacado;
+        this._saldo = this._saldo - valorSacado;
         console.log(`${this.cliente.nome} sacou R$ ${valorSacado}\nNovo saldo: R$ ${this.saldo}`);
     }
 
@@ -19,8 +45,8 @@ export class ContaCorrente{
             return;
         }
 
-        this.saldo += valorDepositado;
-        console.log(`${this.cliente.nome} depositou ${valorDepositado}\nNovo saldo: ${this.saldo}`);
+        this._saldo += valorDepositado;
+        console.log(`${this.cliente.nome} depositou ${valorDepositado}\nNovo saldo: ${this._saldo}`);
     }
 
     transferir(valor, conta){
@@ -29,12 +55,12 @@ export class ContaCorrente{
             return;
         }
 
-        if(valor > this.saldo){
+        if(valor > this._saldo){
             console.log(`Você não possui saldo o suficiente`);
             return;
         }
 
-        this.saldo -= valor;
+        this._saldo -= valor;
         conta.depositar(valor);
         console.log(`Você transfeiriu R$ ${valor} para ${conta.cliente.nome}`);
     }
