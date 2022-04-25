@@ -4,10 +4,6 @@ export class ContaCorrente{
     //Atributo estático da classe não considera as instâncias
     static numeroContas = 0;
 
-    agencia;
-    _saldo;
-    _cliente;
-
     set cliente(cliente){
         if(cliente instanceof Cliente){
             this._cliente = cliente;
