@@ -1,6 +1,10 @@
 import {Conta} from './Conta.js';
 
-export class ContaCorrente extends Conta{
+export class ContaPoupanca extends Conta{
+    constructor(agencia, cliente, saldo){
+        //SUPER evoca o construtor da classe pai (ou mãe - viva o matriarcado)
+        super(agencia, cliente, saldo);
+    }
     sacar(valorSacado){
         if(this._saldo <= valorSacado){
             console.log(`Você não possui saldo o suficiente`);

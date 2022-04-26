@@ -1,8 +1,6 @@
 import {Cliente} from './Cliente.js';
 
 export class Conta{
-    static numeroContas = 0;
-
     set cliente(cliente){
         if(cliente instanceof Cliente){
             this._cliente = cliente;
@@ -17,14 +15,13 @@ export class Conta{
         return this._cliente;
     }
 
-    constructor(agencia, cliente){
+    constructor(agencia, cliente, saldo = 0){
         this.agencia    = agencia;
         this._saldo     = 0;
         this._cliente   = cliente;
-        ContaCorrente.numeroContas += 1 ;
     }
     
-    /* sacar(valorSacado){
+    sacar(valorSacado){
         if(this._saldo <= valorSacado){
             console.log(`Você não possui saldo o suficiente`);
             return; //Early return
@@ -32,7 +29,7 @@ export class Conta{
 
         this._saldo = this._saldo - valorSacado;
         console.log(`${this.cliente.nome} sacou R$ ${valorSacado}\nNovo saldo: R$ ${this.saldo}`);
-    } */
+    }  
 
     depositar(valorDepositado){
         if(valorDepositado <=  0){

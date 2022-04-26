@@ -3,9 +3,9 @@ import {Conta} from './Conta.js';
 import {ContaCorrente} from './ContaCorrente.js';
 import {ContaPoupanca} from './ContaPoupanca.js';
 
-const cliente1  = new Cliente('Eduardo', '00000000272');
+const cliente1      = new Cliente('Eduardo', '00000000272');
 
-const ccorrente1= new ContaCorrente ('001', cliente1);
+const ccorrente1    = new ContaCorrente ('001', cliente1);
 
 console.log(ccorrente1);
 
