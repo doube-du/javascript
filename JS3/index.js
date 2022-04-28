@@ -11,6 +11,6 @@ console.log(ccorrente1);
 
 console.log(`Número de contas: ${ContaCorrente.numeroContas}`);
 
-const cpoupanca = new ContaPoupanca ('001', 100, cliente1);
+const cpoupanca = new ContaPoupanca ('001', cliente1);
 
 console.log(cpoupanca);
