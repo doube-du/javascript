@@ -1,29 +1,24 @@
-function tocaSomPom(){
-    document.querySelector('#som_tecla_pom').play();
+const teclas = document.querySelectorAll('.tecla');
+let contador = 0;
+
+function tocaSom(idAudio){
+    idAudio = '#som_' + idAudio;
+    document.querySelector(idAudio).play();    
 }
 
-function tocaSomClap(){
-    document.querySelector('#som_tecla_clap').play();
+while(teclas.length > contador){
+    teclas[contador].onclick = function (){
+        tocaSom(this.classList[1]);
+    };
+    contador++;
 }
-
-var tecla_pom   = document.querySelector('.tecla_pom');
-var tecla_clap  = document.querySelector('.tecla_clap');
-
-/*
-Função muito grande
-tecla_pom.addEventListener('click',function(){
-    tocaSomPom();
-});
-*/
-
-tecla_pom.onclick = tocaSomPom;
-tecla_clap.onclick = tocaSomClap;
 
 /* 
-var tecla_tim =     document.querySelector('.tecla_tim');
-var tecla_puff =    document.querySelector('.tecla_puff');
-var tecla_splash =  document.querySelector('.tecla_splash');
-var tecla_toim =    document.querySelector('.tecla_toim');
-var tecla_psh =     document.querySelector('.tecla_psh');
-var tecla_tic =     document.querySelector('.tecla_tic');
-var tecla_tom =     document.querySelector('.tecla_tom'); */
+
+Ou, com um for convencional 
+
+teclas.forEach(tecla => {
+    tecla.onclick = tocaSomPom;
+});
+
+*/
