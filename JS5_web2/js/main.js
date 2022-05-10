@@ -16,11 +16,13 @@ for(let i = 0; i < pacientes.length; i++){
 
     if(peso <= 0 || peso >= 1000){
         pacientes[i].querySelector('.info-imc').textContent = 'Peso Inválido';
+        pacientes[i].classList.add('paciente-invalido');
         continue;
     }
 
     if(altura <= 0 || altura >= 3){
         pacientes[i].querySelector('.info-imc').textContent = 'Altura Inválida';
+        pacientes[i].classList.add('paciente-invalido');
         continue;
     }
 
@@ -28,6 +30,14 @@ for(let i = 0; i < pacientes.length; i++){
     imc = imc.toFixed(2); //Considera, apenas, as duas primeiras casas decimais
 
     pacientes[i].querySelector('.info-imc').textContent = imc;
+}
+
+const botaoAdicionar = document.querySelector('#adicionar-paciente');
+
+botaoAdicionar.addEventListener('click', adicionaPaciente);
+
+function adicionaPaciente(){
+    console.log('Clicou !!!');
 }
 
 /* 
@@ -39,11 +49,13 @@ pacientes.forEach(paciente => {
 
     if(peso <= 0 || peso >= 1000){
         pacientes[i].querySelector('.info-imc').textContent = 'Peso Inválido';
+        pacientes[i].classList.add('paciente-invalido');
         return;
     }
 
     if(altura <= 0 || altura >= 3){
         pacientes[i].querySelector('.info-imc').textContent = 'Altura Inválida';
+        pacientes[i].classList.add('paciente-invalido');
         return;
     }
 
