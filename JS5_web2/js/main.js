@@ -34,11 +34,46 @@ for(let i = 0; i < pacientes.length; i++){
 
 const botaoAdicionar = document.querySelector('#adicionar-paciente');
 
-botaoAdicionar.addEventListener('click', adicionaPaciente);
+botaoAdicionar.addEventListener('click', function(event){ //Função Anonima
+    event.preventDefault(); // Prevê o update da tela (comportamento padrão do submit) e o captura.
+    const form  = document.querySelector('#form-adiciona'); // O form no QuerySelector carrega todos os inputs como um objeto [e isso é beem legal]
 
-function adicionaPaciente(){
-    console.log('Clicou !!!');
-}
+    let nome    = form.nome.value;
+    let peso    = form.peso.value;
+    let altura  = form.altura.value;
+    let gordura = form.gordura.value;
+
+    let pacienteLinha = document.createElement('tr');
+    pacienteLinha.classList.add('paciente');
+
+    let nomeCell    = document.createElement('td');
+    nomeCell.classList.add('info-nome');
+    nomeCell.textContent = nome;
+    
+    let pesoCell    = document.createElement('td');
+    pesoCell.classList.add('info-peso');
+    pesoCell.textContent = peso;
+
+    let alturaCell  = document.createElement('td');
+    alturaCell.classList.add('info-altura');
+    alturaCell.textContent = altura;
+
+    let gorduraCell = document.createElement('td');
+    gorduraCell.classList.add('info-gordura');
+    gorduraCell.textContent = gordura;
+
+
+    pacienteLinha.appendChild(nomeCell);
+    pacienteLinha.appendChild(pesoCell);
+    pacienteLinha.appendChild(alturaCell);
+    pacienteLinha.appendChild(gorduraCell);
+
+    let tabela = document.querySelector('#tabela-pacientes');
+
+    tabela.appendChild(pacienteLinha);
+
+    console.log(nomeCell);
+});
 
 /* 
 // Usando o ForEach eu consegui da seguinte forma...
