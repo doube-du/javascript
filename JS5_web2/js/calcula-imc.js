@@ -14,13 +14,13 @@ for(let i = 0; i < pacientes.length; i++){
     const peso      = pacientes[i].querySelector('.info-peso').textContent;
     const altura    = pacientes[i].querySelector('.info-altura').textContent;
 
-    if(peso <= 0 || peso >= 1000){
+    if(!validaPeso(peso)){
         pacientes[i].querySelector('.info-imc').textContent = 'Peso Inválido';
         pacientes[i].classList.add('paciente-invalido');
         continue;
     }
 
-    if(altura <= 0 || altura >= 3){
+    if(!validaAltura(altura)){
         pacientes[i].querySelector('.info-imc').textContent = 'Altura Inválida';
         pacientes[i].classList.add('paciente-invalido');
         continue;
@@ -39,9 +39,36 @@ function calculaIMC(peso, altura)
     return imc;
 }
 
+function validaPeso(peso){
+    if(peso <= 0 || peso >= 1000){
+        return false;
+    }
+    return true;
+}
+
+function validaAltura(altura){
+    if(altura <= 0 || altura >= 3){
+        return false;
+    }
+    return true;
+}
+
+function validaNome(nome){
+    if(nome.length == 0){
+        return false;
+    }
+    return true;
+}
+
+function validaGordura(gordura){
+    if(gordura.length == 0){
+        return false;
+    }
+    return true;
+}
 /* 
 // Usando o ForEach eu consegui da seguinte forma...
-pacientes.forEach(paciente => {
+pacientes.forEach(function(paciente) {
     const nome      = paciente.querySelector('.info-nome').textContent;
     const peso      = paciente.querySelector('.info-peso').textContent;
     const altura    = paciente.querySelector('.info-altura').textContent;

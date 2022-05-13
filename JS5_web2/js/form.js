@@ -8,10 +8,21 @@ botaoAdicionar.addEventListener('click', function(event){ //Função Anonima
     
     let linha       = montaLinha(paciente);
     
+    let erros       = validaPaciente(paciente);
+
+    // if(!validaPaciente(paciente)){
+    if(erros.length > 0){
+        exibeMensagensErros(erros);
+        return;
+    }
+
     // Adiciona paciente a tabela
     let tabela = document.querySelector('#tabela-pacientes');
 
     tabela.appendChild(linha);
+    
+    let listaErros = document.querySelector('#mensagem-erro');
+    listaErros.innerHTML = '';
 
     form.reset();
 
@@ -56,4 +67,36 @@ function montaTd(dado, classe){
     td.classList.add('info-' + classe);
     
     return td;
+}
+
+function validaPaciente(paciente){
+    let erros = [];
+
+    if(!validaNome(paciente.nome)){ // Ou == "";
+        erros.push('Nome não informado');
+    }
+
+    if(!validaGordura(paciente.gordura)){
+        erros.push('Gordura inválida');
+    }
+
+    if(!validaPeso(paciente.peso)){
+        erros.push('Peso inválido');
+    }
+    
+    if(!validaAltura(paciente.altura)){
+        erros.push('Altura inválida');
+    }
+
+    return erros;    
+}
+
+function exibeMensagensErros(erros){
+    let listaErros = document.querySelector('#mensagem-erro');
+    listaErros.innerHTML = '';
+    erros.forEach(function(erro){
+        let erroImpresso = document.createElement('li');
+        erroImpresso.textContent = erro;
+        listaErros.appendChild(erroImpresso);
+    });
 }
