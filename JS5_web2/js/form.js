@@ -1,30 +1,29 @@
 const botaoAdicionar = document.querySelector('#adicionar-paciente');
 
 botaoAdicionar.addEventListener('click', function(event){ //Função Anonima
+
     event.preventDefault(); // Prevê o update da tela (comportamento padrão do submit) e o captura.
     
-    const form      = document.querySelector('#form-adiciona'); // O form no QuerySelector carrega todos os inputs como um objeto [e isso é beem legal]
+    let form        = document.querySelector('#form-adiciona'); // O form no QuerySelector carrega todos os inputs como um objeto [e isso é beem legal]
+
     let paciente    = obtemPacienteDoForm(form);
     
-    let linha       = montaLinha(paciente);
-    
     let erros       = validaPaciente(paciente);
-
+    
     // if(!validaPaciente(paciente)){
-    if(erros.length > 0){
-        exibeMensagensErros(erros);
+        if(erros.length > 0){
+            exibeMensagensErros(erros);
         return;
     }
-
-    // Adiciona paciente a tabela
-    let tabela = document.querySelector('#tabela-pacientes');
-
-    tabela.appendChild(linha);
     
-    let listaErros = document.querySelector('#mensagem-erro');
-    listaErros.innerHTML = '';
+    // Adiciona paciente a tabela
+    
+    adicionaPacienteNaTabela(paciente);
 
     form.reset();
+
+    let listaErros = document.querySelector('#mensagem-erro');
+    listaErros.innerHTML = '';
 
 });
 
@@ -89,6 +88,12 @@ function validaPaciente(paciente){
     }
 
     return erros;    
+}
+
+function adicionaPacienteNaTabela(paciente){
+    let linha       = montaLinha(paciente);
+    let tabela      = document.querySelector('#tabela-pacientes');
+    tabela.appendChild(linha);
 }
 
 function exibeMensagensErros(erros){

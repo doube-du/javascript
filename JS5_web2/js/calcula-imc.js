@@ -66,6 +66,7 @@ function validaGordura(gordura){
     }
     return true;
 }
+
 /* 
 // Usando o ForEach eu consegui da seguinte forma...
 pacientes.forEach(function(paciente) {

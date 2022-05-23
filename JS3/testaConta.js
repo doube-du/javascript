@@ -4,9 +4,9 @@ import {ContaPoupanca}  from './Conta/ContaPoupanca.js';
 import {ContaSalario}   from './Conta/ContaSalario.js';
 
 
-const cliente1      = new Cliente('Eduardo', '00000000272');
+const cliente1          = new Cliente('Eduardo', '00000000272');
 
-const contaCorrente    = new ContaCorrente ('001', cliente1);
+const contaCorrente     = new ContaCorrente ('001', cliente1);
 
 console.log(contaCorrente);
 
