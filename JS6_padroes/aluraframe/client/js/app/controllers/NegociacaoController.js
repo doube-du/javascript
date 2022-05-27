@@ -18,7 +18,8 @@ class NegociacaoController{
         let dataFormatada   = data.getDate() + '/' + data.getMonth() + '/' + data.getFullYear();
 
         let negociacao = new Negociacao(
-            dataFormatada,
+            dataFormatada
+            ,
             this._quantidade.value,
             this._valor.value
         );
