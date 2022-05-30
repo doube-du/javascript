@@ -1,30 +1,38 @@
 class NegociacaoController{
-
     constructor(){
         let $ = document.querySelector.bind(document); // Permite imitar o jQuery
-        this._data       = $('#data');
-        this._quantidade = $('#quantidade');
-        this._valor      = $('#valor');
+        this._data              = $('#data');
+        this._quantidade        = $('#quantidade');
+        this._valor             = $('#valor');
+        this._listaNegociacoes  = new ListaNegociacoes();
     }
 
     adiciona(event){
         event.preventDefault();   
         
-        //Complicando um pouco...
-        var dataFracionada = this._data.value.split('-');
-        dataFracionada[1] = dataFracionada[1] - 1;
+        //Delegando responsabilidade. Criando o Helper, o metodo fica isolado
+        let negociacao  = this._criaNegociacao();
 
-        let data            = new Date(dataFracionada[0], dataFracionada[1], dataFracionada[2]); // É possivel fazer com RegEx (Regular Expressions) ~> (/-/g',')
-        let dataFormatada   = data.getDate() + '/' + data.getMonth() + '/' + data.getFullYear();
+        this._listaNegociacoes.adiciona(negociacao);
+        console.log(this._listaNegociacoes.negociacoes);
 
-        let negociacao = new Negociacao(
-            dataFormatada
-            ,
+        this._limpaFormulario();
+    }
+
+    _criaNegociacao(){
+        return new Negociacao(
+            DateHelper.textoParaData(this._data.value),
             this._quantidade.value,
             this._valor.value
         );
+    }
 
-        console.log(negociacao);
+    _limpaFormulario(){
+        this._data.value        = '';
+        this._quantidade.value  = 1;
+        this._valor.value       = 0.0;
+
+        this._data.focus();
     }
 
 }
