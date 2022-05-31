@@ -20,8 +20,9 @@ class NegociacaoController{
         let negociacao  = this._criaNegociacao();
 
         this._listaNegociacoes.adiciona(negociacao);
+        console.log(document.querySelector('#negociacoes_View').innerHTML);
         this._negociacoesView.update(this._listaNegociacoes);
-
+        console.log(document.querySelector('#negociacoes_View').innerHTML);
         this._limpaFormulario();
     }
 

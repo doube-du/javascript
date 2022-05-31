@@ -5,8 +5,7 @@ class NegociacoesView{
     }
 
     _template(model){
-        return `
-        <table class="table table-hover table-bordered">
+        let table = `<table class="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th>DATA</th>
@@ -17,14 +16,14 @@ class NegociacoesView{
             </thead>
             <tbody>
                 ${
-                    model.negociacoes.map(function(n){
+                    model.negociacoes.map(function(n){ // O método map cria um callback para cada item do Array (chamando função(n) cada item é chamado de N - com arraw function fica: () => n  )
                         return `<tr>
                                     <td>${DateHelper.dataParaTexto(n.data)}</td>
                                     <td>${n.quantidade}</td>
                                     <td>${n.valor}</td>
                                     <td>${n.volume}</td>
                                 </tr>`;
-                    }).join()
+                    }).join('') // O método join junta todos os elementos de um array em uma única string, separados por um valor passado como parâmetro
                 }
             </tbody>
             <tfoot>
@@ -38,6 +37,8 @@ class NegociacoesView{
                 </td>
             </tfoot>
         </table>`;
+        
+        return table;
     }
 
     update(model){
