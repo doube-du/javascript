@@ -7,10 +7,14 @@ class NegociacaoController{
         this._quantidade        = $('#quantidade');
         this._valor             = $('#valor');
         
-        this._listaNegociacoes  = new ListaNegociacoes();
+        this._mensagem          = new Mensagem();
         this._negociacoesView   = new NegociacoesView($('#negociacoes_View'));
 
+        this._listaNegociacoes  = new ListaNegociacoes();
         this._negociacoesView.update(this._listaNegociacoes);
+        
+        this._mensagemView      = new MensagemView($('#mensagem_View'));
+        this._mensagemView.update(this._mensagem);
     }
 
     adiciona(event){
@@ -19,10 +23,13 @@ class NegociacaoController{
         //Delegando responsabilidade. Criando o Helper, o metodo fica isolado
         let negociacao  = this._criaNegociacao();
 
+        this._mensagem.texto = "Negociação adicionada com sucesso";
+        this._mensagemView.update(this._mensagem);
+
         this._listaNegociacoes.adiciona(negociacao);
-        console.log(document.querySelector('#negociacoes_View').innerHTML);
+
         this._negociacoesView.update(this._listaNegociacoes);
-        console.log(document.querySelector('#negociacoes_View').innerHTML);
+
         this._limpaFormulario();
     }
 
