@@ -14,7 +14,7 @@ class DateHelper{
     static dataParaTexto(data){
         //Template string usando interpolação
         let dataFormatada = `${data.getDate()}/${(data.getMonth() + 1)}/${data.getFullYear()}`;
-        return dataFormatada;s
+        return dataFormatada;
     }
 
     static textoParaData(texto){

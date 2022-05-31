@@ -1,10 +1,16 @@
 class NegociacaoController{
     constructor(){
+        
         let $ = document.querySelector.bind(document); // Permite imitar o jQuery
+        
         this._data              = $('#data');
         this._quantidade        = $('#quantidade');
         this._valor             = $('#valor');
+        
         this._listaNegociacoes  = new ListaNegociacoes();
+        this._negociacoesView   = new NegociacoesView($('#negociacoes_View'));
+
+        this._negociacoesView.update(this._listaNegociacoes);
     }
 
     adiciona(event){
@@ -14,7 +20,7 @@ class NegociacaoController{
         let negociacao  = this._criaNegociacao();
 
         this._listaNegociacoes.adiciona(negociacao);
-        console.log(this._listaNegociacoes.negociacoes);
+        this._negociacoesView.update(this._listaNegociacoes);
 
         this._limpaFormulario();
     }
